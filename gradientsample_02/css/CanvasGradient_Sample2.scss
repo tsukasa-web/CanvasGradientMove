@@ -1,0 +1,129 @@
+html,body{
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: 'Quantico', sans-serif;
+  background: url('../img/dvsup.png');
+}
+
+.content{
+  min-width: 1000px;
+  overflow: hidden;
+}
+
+.loading{
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: url('../img/dvsup.png');
+  z-index: 1000;
+  color: #FFFFFF;
+  font-weight: bold;
+
+  & > p{
+    position: relative;
+    top: 50%;
+    margin: 0;
+    text-align: center;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    transform: translateY(-50%);
+    letter-spacing: 0.05em;
+    font-size: 30px;
+  }
+}
+
+#canvas-gradient-parent{
+  position: absolute;
+  top: 50%;
+  left: 100px;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  transform: translateY(-50%);
+  opacity: 0;
+
+  canvas{
+    display: block;
+    width: 110px;
+    height: 790px;
+  }
+}
+
+section{
+  max-width: 550px;
+  position: absolute;
+  top : 50%;
+  left: 230px;
+  -moz-transform: translate3d(0,-50%,0) rotateY(10deg) skewY(-7deg);
+  -webkit-transform: translate3d(0,-50%,0) rotateY(10deg) skewY(-7deg);
+  -o-transform: translate3d(0,-50%,0) rotateY(10deg) skewY(-7deg);
+  -ms-transform: translate3d(0,-50%,0) rotateY(10deg) skewY(-7deg);
+}
+
+.scene02{
+  display: none;
+  opacity: 0;
+}
+
+#canvas-line{
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 210px;
+  width: 2px;
+  height: 100%;
+
+  canvas{
+    display: block;
+  }
+}
+
+.content{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+
+  h1{
+    margin: 0 0 5px;
+    color: #FFFFFF;
+    font-size: 33px;
+    font-weight: bold;
+  }
+  h2{
+    margin: 0 0 15px;
+    color: #CCCCCC;
+    font-size: 18px;
+    font-weight: bold;
+  }
+  p{
+    margin: 0 0 25px;
+    color: #AAAAAA;
+    font-size: 13px;
+
+    &:last-child{
+      margin: 0;
+    }
+
+    a{
+      margin-right: 10px;
+      color: #FFFFFF;
+      text-decoration: none;
+      font-size: 20px;
+
+      &:hover{
+        color: #999999;
+      }
+
+      &:last-child{
+        margin: 0;
+      }
+    }
+  }
+}

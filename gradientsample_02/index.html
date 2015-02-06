@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="format-detection" content="telephone=no">
+    <title>CanvasGradientMove</title>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link href='http://fonts.googleapis.com/css?family=Quantico:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="css/CanvasGradient_Sample2.css">
+</head>
+<body>
+<div class="loading"><p>Now Loading ...</p></div>
+<div class="content">
+    <div id="canvas-line"></div>
+    <div id="canvas-gradient-parent"></div>
+    <section class="scene01">
+        <div class="scene01">
+            <h1>Canvas Gradient Sample2</h1>
+            <h2>Scene1 SHIFTBRAIN</h2>
+            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc,</p>
+            <p><a href="#" class="next-btn">NEXT SCENE</a></p>
+        </div>
+    </section>
+    <section class="scene02">
+        <h1>Canvas Gradient Sample2</h1>
+        <h2>Scene2 SHIFTBRAIN</h2>
+        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc,</p>
+        <p><a href="#" class="prev-btn">PREV SCENE</a></p>
+    </section>
+</div>
+
+<script src="js/jquery-2.1.1.min.js"></script>
+<script src="js/CanvasGradientMove.min.js"></script>
+<script src="js/velocity.min.js"></script>
+
+<script>
+    (function() {
+        var url = 'img/mask.png';
+        var ImgData = new Image();
+        var CanvasGradientMove;
+        ImgData.onload = (function() {
+            var targetCanvas_01 = $('#canvas-gradient-parent');
+            targetCanvas_01.CanvasGradientMove({
+                colorArray: [
+                    '#FFFFFF','#FFFFFF','#FFFFFF',
+                    '#ffefd8',
+                    '#61afd3','#2d5ea8','#233b5e',
+                    '#9E3497',
+                    '#E84A64','#DD3952','#DB1331'
+                ],
+                colorPoint: [0,0.5,1],
+                firstScene: 0,
+                deg: 80,
+                direction: 'left',
+                liquid: false,
+                maskImg: ImgData
+            });
+            CanvasGradientMove = targetCanvas_01.data('CanvasGradientMove');
+            CanvasGradientMove.init();
+
+            $('.loading').velocity({
+                opacity: 0
+            }, {
+                display: 'none',
+                delay: 500,
+                duration: 1000,
+                easing: 'easeOutQuint',
+                complete: function() {
+                    CanvasGradientMove.gradientMove(4, 1000, 'swing', function(){nextBtn.on('click',nextScene);});
+                    CanvasGradientMove2.gradientMove(4, 1000, 'swing');
+                    targetCanvas_01.velocity({ translateY: "0%" }).velocity({
+                        translateY: "-50%",
+                        opacity: 1
+                    }, {
+                        duration: 1000,
+                        easing: 'easeOutQuint'
+                    });
+                }
+            });
+        });
+        ImgData.src = url;
+
+        var targetCanvas_02 = $('#canvas-line');
+        targetCanvas_02.CanvasGradientMove({
+            colorArray: [
+                '#FFFFFF','#FFFFFF','#FFFFFF',
+                '#ffefd8',
+                '#61afd3','#2d5ea8','#233b5e',
+                '#9E3497',
+                '#E84A64','#DD3952','#DB1331'
+            ],
+            colorPoint: [0,0.5,1],
+            firstScene: 0,
+            deg: 90,
+            direction: 'left',
+            liquid: true
+        });
+
+        var CanvasGradientMove2 = targetCanvas_02.data('CanvasGradientMove');
+        CanvasGradientMove2.init();
+
+        var scene01 = $('.scene01');
+        var scene02 = $('.scene02');
+        var prevBtn = $('.prev-btn');
+        var nextBtn = $('.next-btn');
+
+        function nextScene(event){
+            console.log('next');
+            event.preventDefault();
+            nextBtn.off('click',nextScene);
+            scene01.velocity({
+                top: "50%",
+                opacity: 1
+            },{
+                duration: 0
+            }).velocity({
+                top: "30%",
+                opacity: 0
+            }, {
+                display: 'none',
+                duration: 1000,
+                easing: 'easeOutQuint'
+
+            });
+            scene02.velocity({
+                top: "70%",
+                opacity: 0
+            },{
+                duration: 0
+            }).velocity({
+                top: "50%",
+                opacity: 1
+            }, {
+                display: 'block',
+                duration: 1000,
+                easing: 'easeOutQuint'
+            });
+            CanvasGradientMove.gradientMove(4, 1000, 'swing', function(){prevBtn.on('click',prevScene);});
+            CanvasGradientMove2.gradientMove(4, 1000, 'swing');
+        }
+
+        function prevScene(event){
+            console.log('prev');
+            event.preventDefault();
+            prevBtn.off('click',prevScene);
+            scene01.velocity({
+                top: "30%",
+                opacity: 0
+            },{
+                duration: 0
+            }).velocity({
+                top: "50%",
+                opacity: 1
+            }, {
+                display: 'block',
+                duration: 1000,
+                easing: 'easeOutQuint'
+            });
+            scene02.velocity({
+                top: "50%",
+                opacity: 1
+            },{
+                duration: 0
+            }).velocity({
+                top: "70%",
+                opacity: 0
+            }, {
+                display: 'none',
+                duration: 1000,
+                easing: 'easeOutQuint'
+            });
+            CanvasGradientMove.gradientMove(-4, 1000, 'swing', function(){nextBtn.on('click',nextScene);});
+            CanvasGradientMove2.gradientMove(-4, 1000, 'swing');
+        }
+    }).call(this);
+</script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="format-detection" content="telephone=no">
+    <title>CanvasGradientMove Sample1</title>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link href='http://fonts.googleapis.com/css?family=Ubuntu:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="css/CanvasGradientMove_Sample1.css">
+</head>
+<body>
+<div id="canvas-gradient-parent"></div>
+<div class="content">
+    <div class="align-content">
+        <p>CanvasGradientMove</p>
+        <p>
+            <a href="#" class="prev-4frame-btn">PREV 4FRAME</a>
+            <a href="#" class="next-4frame-btn">NEXT 4FRAME</a><br>
+            <a href="#" class="prev-frame-btn">PREV FRAME</a>
+            <a href="#" class="next-frame-btn">NEXT FRAME</a><br>
+            <a href="#" class="prev-posi-btn">PREV POSITION & DRAW</a>
+            <a href="#" class="next-posi-btn">NEXT POSITION & DRAW</a><br>
+            <a href="#" class="draw-btn">DRAW</a>
+            <a href="#" class="clear-btn">CLEAR</a>
+        </p>
+    </div>
+    <!-- /.align-content -->
+</div>
+
+<script src="js/jquery-2.1.1.min.js"></script>
+<script src="js/CanvasGradientMove.min.js"></script>
+
+<script>
+    (function() {
+        var targetCanvas_01 = $('#canvas-gradient-parent');
+        targetCanvas_01.CanvasGradientMove({
+            colorPoint: [0,0.5,1],
+            firstScene: 0,
+            deg: 45,
+            directionX: 'right',
+            directionY: 'bottom'
+        });
+        var CanvasGradientMove = targetCanvas_01.data('CanvasGradientMove');
+        CanvasGradientMove.init();
+
+        $('.prev-4frame-btn').on('click', function(){CanvasGradientMove.gradientMove(-4, 1000, 'swing')});
+        $('.next-4frame-btn').on('click', function(){CanvasGradientMove.gradientMove(4, 1000, 'swing')});
+        $('.prev-frame-btn').on('click', function(){CanvasGradientMove.gradientMove(-1, 1000, 'swing')});
+        $('.next-frame-btn').on('click', function(){CanvasGradientMove.gradientMove(1, 1000, 'swing')});
+        $('.prev-posi-btn').on('click', function(){
+            CanvasGradientMove.moveFrame(-1);
+            CanvasGradientMove.canvasDrawGradient();
+        });
+        $('.next-posi-btn').on('click', function(){
+            CanvasGradientMove.moveFrame(1);
+            CanvasGradientMove.canvasDrawGradient();
+        });
+        $('.draw-btn').on('click', CanvasGradientMove.canvasDrawGradient);
+        $('.clear-btn').on('click', CanvasGradientMove.canvasClear);
+    }).call(this);
+</script>
+</body>
+</html>
