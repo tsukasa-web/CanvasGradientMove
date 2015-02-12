@@ -58,6 +58,8 @@ canvasの生成・グラデーションの初期描画・リサイズ設定を�
 
 ####gradientMove
 
+![gradientMoveの説明](colormove.jpg)
+
 	CanvasGradientMove.gradientMove(skipFrame, duration, easing, callback);   
 
 グラデーションのアニメーションを開始します。
