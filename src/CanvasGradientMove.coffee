@@ -230,8 +230,8 @@ class CanvasGradientMove
 
     #mask描画
     if @options.maskImg
-      @ctx.globalCompositeOperation = 'xor';
-      @ctx.drawImage(@options.maskImg,0,0,canvasWidth,canvasHeight);
+      @ctx.globalCompositeOperation = 'xor'
+      @ctx.drawImage(@options.maskImg,0,0,canvasWidth,canvasHeight)
 
   #canvasの初期化
   canvasClear: =>
